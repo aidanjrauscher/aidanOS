@@ -1,0 +1,2 @@
+# aidanOS
+My personal website.
