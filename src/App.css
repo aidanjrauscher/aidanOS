@@ -112,7 +112,7 @@ body, html {
 
 @media (max-width: 768px) {
   .cursor {
-    width: 6px;
+    width: 8px;
   }
   .terminal-container
   {
@@ -121,5 +121,3 @@ body, html {
 }
 
 /* scroll not working */
-/* not full bg on mobile */
-/* thin cursor on mobile */
