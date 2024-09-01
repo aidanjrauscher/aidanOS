@@ -37,6 +37,7 @@ const socialProfiles = {
                '  disco                Activate temporary disco mode\n' +
                '  echo                 Specifies text to display on the screen\n' +
                '  experience           List my experience\n' +
+               '  hello                A greeting\n' +
                '  projects             List my projects\n' +
                '  resume               Download Aidan\s Resume.\n' +
                '  skills               List my skills';
@@ -55,6 +56,8 @@ const socialProfiles = {
         return args.join(' ');
       case 'experience':
         return 'Working in progress... check back later.'
+      case 'hello':
+        return 'hi'
       case 'projects':
         return 'Working in progress... check back later.'
       case 'resume':

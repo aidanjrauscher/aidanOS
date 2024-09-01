@@ -2,12 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: black;
 }
 
 body, html {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  background-color: black;
 }
 
 @keyframes blink {
@@ -110,10 +112,14 @@ body, html {
 
 @media (max-width: 768px) {
   .cursor {
-    width: 2px;
+    width: 6px;
   }
   .terminal-container
   {
     caret-color: #00ff00;
   }
 }
+
+/* scroll not working */
+/* not full bg on mobile */
+/* thin cursor on mobile */
