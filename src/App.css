@@ -4,18 +4,10 @@
   box-sizing: border-box;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
+body, html {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  background-color: black;
-}
-
-#root {
-  height: 100%;
-  width: 100%;
 }
 
 @keyframes blink {
@@ -33,10 +25,12 @@ html, body {
   100% { color: #ff0000; }
 }
 
+
 .terminal-container {
   background-color: black;
   color: #00ff00;
   font-family: monospace;
+  min-height: 100vh;
   height: 100%;
   width: 100%;
   display: flex;
@@ -44,11 +38,6 @@ html, body {
   padding: 16px;
   box-sizing: border-box;
   overflow-y: auto;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
 }
 
 .terminal-container.disco-mode * {
@@ -115,19 +104,11 @@ html, body {
   width: 0.6em;
   height: 1.2em;
   background-color: #00ff00;
-  animation: blink 1s step-end infinite;
+  animation: blink 1s step-end infinite; 
 }
 
 @media (max-width: 768px) {
   .cursor {
     width: 2px;
-  }
-  
-  .terminal-container {
-    padding: 8px;
-  }
-  
-  .input-container {
-    padding: 8px;
   }
 }

@@ -143,9 +143,6 @@ export default function App(){
           />
           <div 
             className="cursor"
-            style={{
-              left: `calc(${cursorPosition * 0.6}em + 2px)`,
-            }}
           />
         </div>
       </div>
