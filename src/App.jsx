@@ -8,8 +8,10 @@ export default function App(){
   const [cursorPosition, setCursorPosition] = useState(0);
   const [output, setOutput] = useState([...initialOutput]);
   const [discoMode, setDiscoMode] = useState(false);
+  const [discoStartTime, setDiscoStartTime] = useState(null);
   const [commandHistory, setCommandHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
+  const [isMobile, setIsMobile] = useState(false);
   const inputRef = useRef(null);
   const outputRef = useRef(null);
 
@@ -22,16 +24,39 @@ export default function App(){
   }, [output]);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (isMobile) {
+        window.scrollTo(0, document.body.scrollHeight);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMobile]);
+
+  useEffect(() => {
     let discoTimer;
     if (discoMode) {
+      setDiscoStartTime(Date.now());
       discoTimer = setInterval(() => {
+        const elapsedTime = Date.now() - discoStartTime;
+        if (elapsedTime >= 5000) {
           setDiscoMode(false);
           setOutput(prev => [...prev, 'Disco mode ended. Thank you for dancing.']);
           clearInterval(discoTimer);
-      }, 5000);
+        }
+      }, 100);
     }
     return () => clearInterval(discoTimer);
-  }, [discoMode]);
+  }, [discoMode, discoStartTime]);
 
   useEffect(() => {
     const handleGlobalKeyPress = (e) => {
@@ -106,7 +131,7 @@ export default function App(){
         ))}
       </div>
       <div className="input-container">
-        <span>C:\Users\visitor{'>'}</span>
+        <span className="prompt">C:\Users\visitor{'>'}</span>
         <div className="input-wrapper">
           <input
             ref={inputRef}
@@ -119,7 +144,7 @@ export default function App(){
           <div 
             className="cursor"
             style={{
-              left: `${cursorPosition * 0.6}em`,
+              left: `calc(${cursorPosition * 0.6}em + 2px)`,
             }}
           />
         </div>
