@@ -4,10 +4,18 @@
   box-sizing: border-box;
 }
 
-body, html {
+html, body {
+  margin: 0;
+  padding: 0;
   height: 100%;
   width: 100%;
   overflow: hidden;
+  background-color: black;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
 }
 
 @keyframes blink {
@@ -25,33 +33,10 @@ body, html {
   100% { color: #ff0000; }
 }
 
-.@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-@keyframes disco {
-  0% { color: #ff0000; }
-  16% { color: #ff00ff; }
-  32% { color: #0000ff; }
-  48% { color: #00ffff; }
-  64% { color: #00ff00; }
-  80% { color: #ffff00; }
-  100% { color: #ff0000; }
-}
-
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-}
-
 .terminal-container {
   background-color: black;
   color: #00ff00;
   font-family: monospace;
-  min-height: 100vh;
   height: 100%;
   width: 100%;
   display: flex;
@@ -59,6 +44,11 @@ body, html {
   padding: 16px;
   box-sizing: border-box;
   overflow-y: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .terminal-container.disco-mode * {
@@ -131,5 +121,13 @@ body, html {
 @media (max-width: 768px) {
   .cursor {
     width: 2px;
+  }
+  
+  .terminal-container {
+    padding: 8px;
+  }
+  
+  .input-container {
+    padding: 8px;
   }
 }
