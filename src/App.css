@@ -2,10 +2,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: black;
 }
 
-body, html {
+html, body, #root {
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -27,19 +26,20 @@ body, html {
   100% { color: #ff0000; }
 }
 
-
 .terminal-container {
   background-color: black;
   color: #00ff00;
   font-family: monospace;
-  min-height: 100vh;
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 16px;
   box-sizing: border-box;
-  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .terminal-container.disco-mode * {
@@ -49,14 +49,14 @@ body, html {
 .terminal-header {
   font-size: 1.25rem;
   font-weight: bold;
-  margin-bottom: 16px;
+  padding: 16px 16px 0;
 }
 
 .terminal-output {
   flex-grow: 1;
   overflow-y: auto;
-  margin-bottom: 16px;
-  padding-bottom: 60px; /* Add space for the input area */
+  padding: 16px;
+  padding-bottom: 60px; /* Space for input */
 }
 
 .output-line {
@@ -65,7 +65,7 @@ body, html {
 }
 
 .input-container {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
@@ -111,13 +111,17 @@ body, html {
 }
 
 @media (max-width: 768px) {
-  .cursor {
-    width: 8px;
+  .terminal-header,
+  .terminal-content,
+  .input-container {
+    padding: 8px;
   }
-  .terminal-container
-  {
-    caret-color: #00ff00;
+  
+  .terminal-content {
+    padding-bottom: 52px; /* Adjusted for smaller input container padding */
+  }
+
+  .cursor {
+    width: 2px;
   }
 }
-
-/* scroll not working */

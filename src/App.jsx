@@ -20,7 +20,9 @@ export default function App(){
   }, []);
 
   useEffect(() => {
-    outputRef.current.scrollTop = outputRef.current.scrollHeight;
+    if (outputRef.current) {
+      outputRef.current.scrollTop = outputRef.current.scrollHeight;
+    }
   }, [output]);
 
   useEffect(() => {
