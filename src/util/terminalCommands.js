@@ -22,6 +22,24 @@ const socialProfiles = {
       return `Unknown website: ${destination}. Available websites: twitter, github, linkedin`;
     }
   };
+
+  const handleResumeCommand = () => {
+    const pathToPDF = "./resume.pdf"; 
+    fetch(pathToPDF).then((response) => {
+        response.blob().then((blob) => {
+        
+            const fileURL =
+                window.URL.createObjectURL(blob);
+                
+            let pdfLink = document.createElement("a");
+            pdfLink.href = fileURL;
+            pdfLink.download = "AidanRauscher.pdf";
+            pdfLink.click();
+
+            window.open(pathToPDF, '_blank');
+        });
+    });
+};
   
   export const handleCommand = (input) => {
     const [command, ...args] = input.trim().toLowerCase().split(' ');
@@ -61,7 +79,8 @@ const socialProfiles = {
       case 'projects':
         return 'Working in progress... check back later.'
       case 'resume':
-        return 'Working in progress... check back later.'
+        handleResumeCommand()
+        return 'Downloaded Aidan\'s resume.'
       case 'skills':
         return 'Working in progress... check back later.'
       default:

@@ -15,6 +15,9 @@ export default function App(){
   const inputRef = useRef(null);
   const outputRef = useRef(null);
 
+  //TODO:
+  // adjust layout of help response (maybe columns) so it's more responsive
+
   useEffect(() => {
     inputRef.current.focus();
   }, []);
