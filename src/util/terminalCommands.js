@@ -46,9 +46,10 @@ const socialProfiles = {
   
     switch (command) {
       case 'help':
-        return 'Available commands:\n' +
+        return 'Available commands:\n' + 
                '  help                 Show this help message\n' +
                '  about                Display information about Aidan Rauscher\n' +
+               '  aidan                Me\n'+
                '  clear                Clear current terminal output\n' +
                '  contact              Show contact information\n' +
                '  cd <location>        Navigate to external profiles (github, linkedin, twitter)\n' +
@@ -62,6 +63,8 @@ const socialProfiles = {
 
       case 'about':
         return 'Aidan Rauscher is a fullstack software engineer. He currently works at Hamilton Lane.';
+      case 'aidan':
+        return 'rauscher'
       case 'clear':
         return;
       case 'contact':
