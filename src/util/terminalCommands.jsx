@@ -18,7 +18,7 @@ const socialProfiles = {
     }
   
     if (socialProfiles[destination]) {
-      window.open(socialProfiles[destination], '_blank');
+      window.open(socialProfiles[destination], '_blank', 'noopener,noreferrer');
       return <p>Navigating to {destination}...</p>;
     } else {
       return <p>Unknown website: {destination}. Available websites: twitter, github, linkedin</p>;
@@ -38,7 +38,7 @@ const socialProfiles = {
             pdfLink.download = "AidanRauscher.pdf";
             pdfLink.click();
 
-            window.open(pathToPDF, '_blank');
+            window.open(pathToPDF, '_blank', 'noopener,noreferrer');
         });
     });
     return <p>Downloaded Aidan's resume.</p>;
