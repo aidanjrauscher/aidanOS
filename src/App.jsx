@@ -3,7 +3,11 @@ import { handleCommand } from './util/terminalCommands';
 import './App.css'
 
 export default function App(){
-  const initialOutput = ["Welcome to AidanOS v1.0", "Type \"help\" for available commands."];
+  const initialOutput = [
+    { type: 'text', content: "Welcome to AidanOS v1.0" },
+    { type: 'text', content: "Type \"help\" for available commands." }
+  ];
+  
   const [input, setInput] = useState('');
   const [cursorPosition, setCursorPosition] = useState(0);
   const [output, setOutput] = useState([...initialOutput]);
@@ -14,9 +18,7 @@ export default function App(){
   const [isMobile, setIsMobile] = useState(false);
   const inputRef = useRef(null);
   const outputRef = useRef(null);
-
-  //TODO:
-  // adjust layout of help response (maybe columns) so it's more responsive
+  const promptRef = useRef(null);
 
   useEffect(() => {
     inputRef.current.focus();
@@ -55,7 +57,7 @@ export default function App(){
         const elapsedTime = Date.now() - discoStartTime;
         if (elapsedTime >= 5000) {
           setDiscoMode(false);
-          setOutput(prev => [...prev, 'Disco mode ended. Thank you for dancing.']);
+          setOutput(prev => [...prev, { type: 'text', content: 'Disco mode ended. Thank you for dancing.' }]);
           clearInterval(discoTimer);
         }
       }, 100);
@@ -84,7 +86,12 @@ export default function App(){
     if (e.key === 'Enter') {
       if (input.trim()) {
         const response = handleCommand(input);
-        setOutput([...output, '', `C:\\Users\\visitor> ${input}`, response]);
+        setOutput(prev => [
+          ...prev,
+          { type: 'text', content: '' },
+          { type: 'text', content: `C:\\Users\\visitor> ${input}` },
+          { type: response.type || 'text', content: response.content || response }
+        ]);
         setCommandHistory(prev => [input, ...prev]);
         setHistoryIndex(-1);
         if (input.trim().toLowerCase() === 'disco') {
@@ -124,6 +131,15 @@ export default function App(){
     e.preventDefault();
   };
 
+  const renderOutput = (item, index) => {
+    if (item.type === 'text') {
+      return <div key={index} className="output-line">{item.content}</div>;
+    } else if (item.type === 'react') {
+      return <div key={index} className="output-line">{item.content}</div>;
+    }
+    return null;
+  };
+
   return (
     <div 
       className={`terminal-container ${discoMode ? 'disco-mode' : ''}`}
@@ -131,12 +147,10 @@ export default function App(){
     >
       <h1 className="terminal-header">AidanOS Terminal</h1>
       <div ref={outputRef} className="terminal-output">
-        {output.map((line, index) => (
-          <div key={index} className="output-line">{line}</div>
-        ))}
+        {output.map(renderOutput)}
       </div>
       <div className="input-container">
-        <span className="prompt">C:\Users\visitor{'>'}</span>
+        <span ref={promptRef} className="prompt">C:\Users\visitor{'>'}</span>
         <div className="input-wrapper">
           <input
             ref={inputRef}
@@ -149,7 +163,7 @@ export default function App(){
           <div 
             className="cursor"
             style={{
-              left: `calc(${cursorPosition * 0.6}em)`,
+              left: `${cursorPosition * 0.6}em`,
             }}
           />
         </div>
