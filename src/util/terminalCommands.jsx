@@ -27,20 +27,24 @@ const socialProfiles = {
 
   const handleResumeCommand = () => {
     const pathToPDF = "./resume.pdf"; 
-    fetch(pathToPDF).then((response) => {
-        response.blob().then((blob) => {
-        
-            const fileURL =
-                window.URL.createObjectURL(blob);
-                
+
+    window.open(pathToPDF, '_blank', 'noopener,noreferrer');
+
+    fetch(pathToPDF)
+        .then(response => response.blob())
+        .then(blob => {
+            const fileURL = window.URL.createObjectURL(blob);
+
             let pdfLink = document.createElement("a");
             pdfLink.href = fileURL;
             pdfLink.download = "AidanRauscher.pdf";
             pdfLink.click();
 
-            window.open(pathToPDF, '_blank', 'noopener,noreferrer');
-        });
-    });
+            setTimeout(() => {
+                window.URL.revokeObjectURL(fileURL);
+            }, 1000); // Adjust the timeout if needed
+        })
+      .catch(error => <p>Uh oh... failed to download resume. Please try again.</p>)
     return <p>Downloaded Aidan's resume.</p>;
 };
 
