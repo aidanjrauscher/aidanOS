@@ -78,8 +78,21 @@ const HelpDetails = () => (
         return { type: 'react', content: <p>Activating disco mode. Please dance.</p> };
       case 'echo':
         return { type: 'react', content: <p>{args.join(' ')}</p> };
+      case 'education':
+        return { type: 'react', content: 
+          <ul style={{marginLeft: '2em'}}>
+            <li>Penn State, B.S. Computer Science</li>
+          </ul> 
+        };
       case 'experience':
-        return { type: 'react', content: <p>Work in progress... check back later.</p> };
+        return { type: 'react', content: 
+          <ul style={{marginLeft: '2em'}}>
+            <li>Fullstack Enginer @ Hamilton Lane (2023-Present)</li>
+            <li>Freelance Technology Writer @ Inside.Com (2022-2023)</li>
+            <li>IT Intern @ PPL (2022)</li>
+            <li>Co-Founder @ Table Rock Markets (2021-2022)</li>
+          </ul> 
+        };
       case 'hello':
         return { type: 'react', content: <p>hi</p> };
       case 'matrix':
@@ -98,7 +111,8 @@ const HelpDetails = () => (
               className="matrix-output-blue-pill"
             >
               Blue Bill
-            </button>          </div>
+            </button>          
+          </div>
         </div>
       };
       case 'projects':
@@ -106,7 +120,21 @@ const HelpDetails = () => (
       case 'resume':
         return { type: 'react', content: handleResumeCommand() };
       case 'skills':
-        return { type: 'react', content: <p>Work in progress... check back later.</p> };
+        return { type: 'react', content: 
+        <ul style={{marginLeft: '2em'}}>
+          <li>Fullstack, Frontend, & Backend Development</li> 
+          <li>Scripting, Debugging, Automation</li>
+          <li>JavaScript, Node.js, Next.js, React</li>
+          <li>C#, .NET, ASP.NET, Blazor</li>
+          <li>Python</li>
+          <li>SQL</li>
+          <li>HTML, CSS, Tailwind CSS</li>
+          <li>ChatGPT, Claude Chat, Perplexity</li>
+          <li>Git, GitHub, Visual Studo, VS Code, Replit</li>
+          <li>Microsoft Power Automate, Zapier, Airtable</li>
+          <li>Slack, Zoom, Google Meet, Microsoft Teams</li>
+        </ul>
+      };
       default:
         return { type: 'react', content: <p>Command not found: {command}. Type "help" for available commands.</p> };
     }
