@@ -35,7 +35,7 @@ const socialProfiles = {
     pdfLink.download = "AidanRauscher.pdf";
     pdfLink.click();
 
-    if(isMobile)
+    if(!isMobile)
     {
       window.open(pathToPDF, '_blank', 'noopener,noreferrer');
     }
