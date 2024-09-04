@@ -116,7 +116,14 @@ const HelpDetails = () => (
         </div>
       };
       case 'projects':
-        return { type: 'react', content: <p>Work in progress... check back later.</p> };
+        return { type: 'react', content: 
+        <ul style={{marginLeft: '2em'}}>
+          <li>BabyAGI (OSS)</li>
+          <li>SearchGPT/DarwinGPT/ProgrammerGPT</li>
+          <li>NFL Outcome Prediction (Machine Learning)</li>
+          <li>More on GitHub (try `cd github`)</li>
+        </ul>
+      };
       case 'resume':
         return { type: 'react', content: handleResumeCommand() };
       case 'skills':
