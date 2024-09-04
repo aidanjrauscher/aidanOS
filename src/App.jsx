@@ -83,15 +83,39 @@ export default function App(){
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      if (input.trim()) {
-        const response = handleCommand(input);
-        setOutput(prev => [
-          ...prev,
-          { type: 'text', content: '' },
-          { type: 'text', content: `C:\\Users\\visitor> ${input}` },
-          { type: response.type || 'text', content: response.content || response }
-        ]);
+    if (e.key === 'Enter' || (e.ctrlKey && e.key === 'c')) {
+      if (input.trim() || (e.ctrlKey && e.key === 'c')) {
+        let response;
+        if(e.ctrlKey && e.key === 'c')
+        {
+          response = {type: 'text', content: ''}
+          console.log(response)
+        }
+        else
+        {
+          response = handleCommand(input);
+        }
+        //clear disco mode if active
+        if(discoMode)
+        {
+          setOutput(prev => [
+            ...prev,
+            { type: 'text', content: 'Stopped disco mode.' },
+            { type: 'text', content: '' },
+            { type: 'text', content: `C:\\Users\\visitor> ${input}` },
+            { type: response.type || 'text', content: response.content }
+          ]);
+          input.trim().toLowerCase() === 'disco' ? null : setDiscoMode(false);
+        }
+        else
+        {
+          setOutput(prev => [
+            ...prev,
+            { type: 'text', content: '' },
+            { type: 'text', content: `C:\\Users\\visitor> ${input}` },
+            { type: response.type || 'text', content: response.content }
+          ]);
+        }
         setCommandHistory(prev => [input, ...prev]);
         setHistoryIndex(-1);
         if (input.trim().toLowerCase() === 'disco') {
@@ -161,9 +185,9 @@ export default function App(){
             className="terminal-input"
           />
           <div 
-            className="cursor"
+            className={`cursor ${discoMode ? 'disco-mode' : ''}`}
             style={{
-              left: `${cursorPosition * 0.6}em`,
+              left: `${cursorPosition * 0.75}em`,
             }}
           />
         </div>

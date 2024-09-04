@@ -26,6 +26,16 @@ html, body, #root {
   100% { color: #ff0000; }
 }
 
+@keyframes disco-cursor {
+  0% { background-color: #ff0000; }
+  16% { background-color: #ff00ff; }
+  32% { background-color: #0000ff; }
+  48% { background-color: #00ffff; }
+  64% { background-color: #00ff00; }
+  80% { background-color: #ffff00; }
+  100% { background-color: #ff0000; }
+}
+
 .terminal-container {
   background-color: black;
   color: #00ff00;
@@ -47,7 +57,7 @@ html, body, #root {
 }
 
 .terminal-header {
-  font-size: 1.25rem;
+  font-size: 2em;
   font-weight: bold;
   padding: 16px 16px 0;
 }
@@ -56,8 +66,8 @@ html, body, #root {
   flex-grow: 1;
   overflow-y: auto;
   padding: 16px;
-  padding-bottom: 60px; /* Space for input */
-  font-size: .88em;
+  padding-bottom: 3em; /* Space for input */
+  font-size: 1.25em;
 }
 
 .output-line {
@@ -79,6 +89,7 @@ html, body, #root {
 .prompt {
   margin-right: 8px;
   white-space: nowrap;
+  font-size: 1.25em;
 }
 
 .input-wrapper {
@@ -100,15 +111,20 @@ html, body, #root {
   margin: 0;
   line-height: 1;
   caret-color: transparent;
+  font-size: 1.25em;
 }
 
 .cursor {
   position: absolute;
   top: 0;
-  width: 0.6em;
-  height: 1.2em;
+  width: 0.75em;
+  height: 1.5em;
   background-color: #00ff00;
   animation: blink 1s step-end infinite; 
+}
+
+.terminal-container.disco-mode .cursor {
+  animation: disco-cursor 0.5s linear infinite, blink 1s step-end infinite;
 }
 
 .matrix-output-outer-div {
@@ -158,7 +174,7 @@ html, body, #root {
 
 .command-grid {
   display: grid;
-  grid-template-columns: 1fr 8fr;
+  grid-template-columns: 1fr 4fr;
   gap: 0px;
   padding: 0;
   list-style: none;

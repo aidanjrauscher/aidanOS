@@ -28,23 +28,13 @@ const socialProfiles = {
   const handleResumeCommand = () => {
     const pathToPDF = "./resume.pdf"; 
 
+    let pdfLink = document.createElement("a");
+    pdfLink.href = pathToPDF;
+    pdfLink.target = "_blank";
+    pdfLink.download = "AidanRauscher.pdf";
+    pdfLink.click();
+
     window.open(pathToPDF, '_blank', 'noopener,noreferrer');
-
-    fetch(pathToPDF)
-        .then(response => response.blob())
-        .then(blob => {
-            const fileURL = window.URL.createObjectURL(blob);
-
-            let pdfLink = document.createElement("a");
-            pdfLink.href = fileURL;
-            pdfLink.download = "AidanRauscher.pdf";
-            pdfLink.click();
-
-            setTimeout(() => {
-                window.URL.revokeObjectURL(fileURL);
-            }, 1000); // Adjust the timeout if needed
-        })
-      .catch(error => <p>Uh oh... failed to download resume. Please try again.</p>)
     return <p>Downloaded Aidan's resume.</p>;
 };
 
@@ -59,22 +49,6 @@ const HelpDetails = () => (
         </div>
       ))}
     </div>
-    {/* <ul style={{ listStyleType: 'none', padding: 0 }}>
-      <li>help                 Show this help message</li>
-      <li>about                Display information about Aidan Rauscher</li>
-      <li>aidan                Me</li>
-      <li>clear                Clear current terminal output</li>
-      <li>contact              Show contact information</li>
-      <li>cd &lt;location&gt;        Navigate to external profiles (github, linkedin, twitter)</li>
-      <li>disco                Activate temporary disco mode</li>
-      <li>echo                 Specifies text to display on the screen</li>
-      <li>experience           List my experience</li>
-      <li>hello                A greeting</li>
-      <li>matrix               After this, there is no turning back...</li>
-      <li>projects             List my projects</li>
-      <li>resume               Download Aidan's Resume</li>
-      <li>skills               List my skills</li>
-    </ul> */}
   </div>
 );
   
@@ -89,7 +63,7 @@ const HelpDetails = () => (
       case 'aidan':
         return { type: 'react', content: <p>rauscher</p> };
       case 'clear':
-        return null;
+        return { type: 'text', content: '' }
       case 'contact':
         return { type: 'react', content: <p>Email: <a href="mailto:aidanrauscher23@gmail.com">aidanrauscher23@gmail.com</a></p> };
       case 'cd':
