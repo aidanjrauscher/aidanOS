@@ -29,16 +29,17 @@ const socialProfiles = {
     const pathToPDF = "./resume.pdf"; 
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    let pdfLink = document.createElement("a");
-    pdfLink.href = pathToPDF;
-    pdfLink.target = "_blank";
-    pdfLink.download = "AidanRauscher.pdf";
-    pdfLink.click();
-
     if(!isMobile)
     {
-      window.open(pathToPDF, '_blank', 'noopener,noreferrer');
+      let pdfLink = document.createElement("a");
+      pdfLink.href = pathToPDF;
+      pdfLink.target = "_blank";
+      pdfLink.download = "AidanRauscher.pdf";
+      pdfLink.click();
     }
+
+    window.open(pathToPDF, '_blank', 'noopener,noreferrer');
+
 
     return <p>Downloaded Aidan's resume.</p>;
 };
