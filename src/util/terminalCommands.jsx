@@ -2,7 +2,6 @@ import React from 'react';
 import commands from './commands'; 
 
 const socialProfiles = {
-    twitter: 'https://twitter.com/aidanjrauscher',
     github: 'https://github.com/aidanjrauscher',
     linkedin: 'https://www.linkedin.com/in/aidanjrauscher',
     google: 'https://www.google.com'
@@ -10,7 +9,7 @@ const socialProfiles = {
   
   const handleCdCommand = (destination) => {
     if (!destination) {
-      return <p>Usage: cd &lt;website&gt;. Available websites: github, linkedin, twitter</p>;
+      return <p>Usage: cd &lt;website&gt;. Available websites: github, linkedin</p>;
     }
   
     if (destination === "..") {
@@ -21,7 +20,7 @@ const socialProfiles = {
       window.open(socialProfiles[destination], '_blank', 'noopener,noreferrer');
       return <p>Navigating to {destination}...</p>;
     } else {
-      return <p>Unknown website: {destination}. Available websites: twitter, github, linkedin</p>;
+      return <p>Unknown website: {destination}. Available websites: github, linkedin</p>;
     }
   };
 

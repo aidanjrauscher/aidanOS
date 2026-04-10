@@ -4,7 +4,7 @@ const commands = {
     "aidan": "Me",
     "clear": "Clear current terminal output",
     "contact": "Show contact information",
-    "cd <location>": "Navigate to external profiles (github, linkedin, twitter)", 
+    "cd <location>": "Navigate to external profiles (github, linkedin)", 
     "disco": "Activate temporary disco mode",
     "echo": "Specifies text to display on the screen",
     "experience": "List my experience",
