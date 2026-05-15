@@ -10,8 +10,9 @@ const commands = {
     "experience": "List my experience",
     "hello": "A greeting",
     "projects": "List my projects",
-    "resume": "Download Aidan\'s Resume.",
-    "skills": "List my skills"
+    "resume": "Download Aidan\'s Resume",
+    "skills": "List my skills",
+    "schwarber": "Check Kyle Schwarber\'s home run stats"
 };
 
 export default commands;
