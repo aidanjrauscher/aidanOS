@@ -125,6 +125,9 @@ const HelpDetails = () => (
       };
       case 'resume':
         return { type: 'react', content: handleResumeCommand() };
+      case 'schwarber':
+        window.open('https://schwarbombs.aidanjrauscher.com', '_blank', 'noopener,noreferrer');
+        return <p>Navigating to Schwarbombs...</p>;
       case 'skills':
         return { type: 'react', content: 
         <ul style={{marginLeft: '2em'}}>
@@ -141,9 +144,9 @@ const HelpDetails = () => (
           <li>Slack, Zoom, Google Meet, Microsoft Teams</li>
         </ul>
       };
-      case 'schwarber':
-        window.open('https://schwarbombs.aidanjrauscher.com', '_blank', 'noopener,noreferrer');
-        return <p>Navigating to Schwarbombs...</p>;
+      case 'tabs':
+        window.open('https://tabs.aidanjrauscher.com', '_blank', 'noopener,noreferrer');
+        return <p>Navigating to tabs...</p>;
       default:
         return { type: 'react', content: <p>Command not found: {command}. Type "help" for available commands.</p> };
     }
