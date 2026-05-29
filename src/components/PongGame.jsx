@@ -90,22 +90,27 @@ export default function PongGame() {
     canvas.addEventListener('touchmove', onTouchMove, { passive: false });
 
     let raf;
-    const loop = () => {
+    let lastTime = null;
+    const loop = (timestamp) => {
       if (!state.running) return;
 
+      if (lastTime === null) lastTime = timestamp;
+      const dt = Math.min((timestamp - lastTime) / 16.67, 3);
+      lastTime = timestamp;
+
       if ((state.keys['w'] || state.keys['W']) && state.playerY > 0)
-        state.playerY = Math.max(0, state.playerY - PADDLE_SPEED);
+        state.playerY = Math.max(0, state.playerY - PADDLE_SPEED * dt);
       if ((state.keys['s'] || state.keys['S']) && state.playerY < H - PADDLE_H)
-        state.playerY = Math.min(H - PADDLE_H, state.playerY + PADDLE_SPEED);
+        state.playerY = Math.min(H - PADDLE_H, state.playerY + PADDLE_SPEED * dt);
 
       const aiCenter = state.aiY + PADDLE_H / 2;
       if (aiCenter < state.ball.y - 20 && state.aiY < H - PADDLE_H)
-        state.aiY = Math.min(H - PADDLE_H, state.aiY + PADDLE_SPEED * 0.35);
+        state.aiY = Math.min(H - PADDLE_H, state.aiY + PADDLE_SPEED * 0.35 * dt);
       else if (aiCenter > state.ball.y + 20 && state.aiY > 0)
-        state.aiY = Math.max(0, state.aiY - PADDLE_SPEED * 0.35);
+        state.aiY = Math.max(0, state.aiY - PADDLE_SPEED * 0.35 * dt);
 
-      state.ball.x += state.ball.vx;
-      state.ball.y += state.ball.vy;
+      state.ball.x += state.ball.vx * dt;
+      state.ball.y += state.ball.vy * dt;
 
       if (state.ball.y - BALL_SIZE / 2 <= 0) {
         state.ball.y = BALL_SIZE / 2;
