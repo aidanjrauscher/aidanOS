@@ -9,6 +9,7 @@ const commands = {
     "echo": "Specifies text to display on the screen",
     "experience": "List my experience",
     "hello": "A greeting",
+    "play": "Play a game of Pong (W/S to move)",
     "projects": "List my projects",
     "resume": "Download Aidan\'s Resume",
     "schwarber": "Check Kyle Schwarber\'s home run stats",

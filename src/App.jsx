@@ -88,11 +88,12 @@ export default function App(){
         let response;
         if(e.ctrlKey && e.key === 'c')
         {
+          document.dispatchEvent(new CustomEvent('aidan-os-command'));
           response = {type: 'text', content: ''}
-          console.log(response)
         }
         else
         {
+          document.dispatchEvent(new CustomEvent('aidan-os-command'));
           response = handleCommand(input);
         }
         //clear disco mode if active

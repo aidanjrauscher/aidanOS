@@ -1,5 +1,6 @@
 import React from 'react';
-import commands from './commands'; 
+import commands from './commands';
+import PongGame from '../components/PongGame';
 
 const socialProfiles = {
     github: 'https://github.com/aidanjrauscher',
@@ -114,6 +115,8 @@ const HelpDetails = () => (
           </div>
         </div>
       };
+      case 'play':
+        return { type: 'react', content: <PongGame key={Date.now()} /> };
       case 'projects':
         return { type: 'react', content: 
         <ul style={{marginLeft: '2em'}}>
