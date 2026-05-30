@@ -39,10 +39,11 @@ async function exchangeRefreshToken(refreshToken, credentials) {
 }
 
 export default async function handler(req, res) {
-  // Block requests not originating from the site
+  // Block requests with a foreign Origin header (same-origin requests won't have one)
   const origin = req.headers.origin || req.headers.referer || '';
-  const allowed = ALLOWED_ORIGINS.some(o => origin.startsWith(o));
-  if (!allowed) return res.status(403).json({ error: 'Forbidden' });
+  if (origin && !ALLOWED_ORIGINS.some(o => origin.startsWith(o))) {
+    return res.status(403).json({ error: 'Forbidden' });
+  }
 
   res.setHeader('Access-Control-Allow-Origin', origin);
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
