@@ -10,7 +10,7 @@ export async function initPlayer() {
     const setup = () => {
       player = new window.Spotify.Player({
         name: 'AidanOS',
-        getOAuthToken: cb => getToken().then(token => { console.log('SDK token:', token); cb(token); }),
+        getOAuthToken: cb => getToken().then(cb),
         volume: 0.8,
       });
 
