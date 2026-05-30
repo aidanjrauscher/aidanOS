@@ -157,8 +157,8 @@ const HelpDetails = () => (
           const artist = track.artists.map(a => a.name).join(', ');
           const url = track.external_urls.spotify;
           document.dispatchEvent(new CustomEvent('spotify-result', { detail: { name: track.name, artist, url, uri: track.uri } }));
-        }).catch(() => {
-          document.dispatchEvent(new CustomEvent('spotify-result', { detail: { error: true } }));
+        }).catch(err => {
+          document.dispatchEvent(new CustomEvent('spotify-result', { detail: { error: true, message: err?.message || String(err) } }));
         });
         return { type: 'react', content: <p>Finding a random track...</p> };
       }

@@ -35,7 +35,7 @@ export default function App(){
     const handleSpotifyResult = (e) => {
       const { error, name, artist, uri } = e.detail;
       if (error) {
-        setOutput(prev => [...prev, { type: 'react', content: <p>Could not fetch track. Try again.</p> }]);
+        setOutput(prev => [...prev, { type: 'react', content: <p>Could not fetch track: {e.detail.message}</p> }]);
         return;
       }
       playTrack(uri).catch(err => {
