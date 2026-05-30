@@ -1,6 +1,7 @@
 import React from 'react';
 import commands from './commands';
 import PongGame from '../components/PongGame';
+import { getRandomTrackFromPlaylist } from './spotify';
 
 const socialProfiles = {
     github: 'https://github.com/aidanjrauscher',
@@ -147,6 +148,20 @@ const HelpDetails = () => (
           <li>Slack, Zoom, Google Meet, Microsoft Teams</li>
         </ul>
       };
+      case 'song': {
+        getRandomTrackFromPlaylist().then(track => {
+          if (!track) {
+            document.dispatchEvent(new CustomEvent('spotify-result', { detail: { error: true } }));
+            return;
+          }
+          const artist = track.artists.map(a => a.name).join(', ');
+          const url = track.external_urls.spotify;
+          document.dispatchEvent(new CustomEvent('spotify-result', { detail: { name: track.name, artist, url, uri: track.uri } }));
+        }).catch(() => {
+          document.dispatchEvent(new CustomEvent('spotify-result', { detail: { error: true } }));
+        });
+        return { type: 'react', content: <p>Finding a random track...</p> };
+      }
       case 'tabs':
         window.open('https://tabs.aidanjrauscher.com', '_blank', 'noopener,noreferrer');
         return <p>Navigating to tabs...</p>;

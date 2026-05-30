@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { handleCommand } from './util/terminalCommands';
+import { playTrack, stopPlayback } from './util/spotifyPlayer';
 import './App.css'
 
 export default function App(){
@@ -22,6 +23,31 @@ export default function App(){
 
   useEffect(() => {
     inputRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    const handleAnyCommand = () => stopPlayback();
+    document.addEventListener('aidan-os-command', handleAnyCommand);
+    return () => document.removeEventListener('aidan-os-command', handleAnyCommand);
+  }, []);
+
+  useEffect(() => {
+    const handleSpotifyResult = (e) => {
+      const { error, name, artist, uri } = e.detail;
+      if (error) {
+        setOutput(prev => [...prev, { type: 'react', content: <p>Could not fetch track. Try again.</p> }]);
+        return;
+      }
+      playTrack(uri).catch(err => {
+        setOutput(prev => [...prev, { type: 'react', content: <p>Playback failed: {err.message}</p> }]);
+      });
+      setOutput(prev => [...prev, {
+        type: 'react',
+        content: <p>Now playing: {name} — {artist}</p>
+      }]);
+    };
+    document.addEventListener('spotify-result', handleSpotifyResult);
+    return () => document.removeEventListener('spotify-result', handleSpotifyResult);
   }, []);
 
   useEffect(() => {

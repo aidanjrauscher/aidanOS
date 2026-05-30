@@ -14,6 +14,7 @@ const commands = {
     "resume": "Download Aidan\'s Resume",
     "schwarber": "Check Kyle Schwarber\'s home run stats",
     "skills": "List my skills",
+    "song": "Play a random song from Aidan's playlist",
     "tabs": "Check out guitar tabs I like"
 };
 
