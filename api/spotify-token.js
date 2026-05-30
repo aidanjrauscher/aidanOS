@@ -1,4 +1,4 @@
-const ALLOWED_ORIGINS = ['https://aidanjrauscher.com', 'http://127.0.0.1:3000', 'http://localhost:3000'];
+const ALLOWED_ORIGINS = ['https://aidanjrauscher.com', 'https://www.aidanjrauscher.com', 'http://127.0.0.1:3000', 'http://localhost:3000'];
 
 async function getStoredRefreshToken() {
   const { KV_REST_API_URL, KV_REST_API_TOKEN } = process.env;
