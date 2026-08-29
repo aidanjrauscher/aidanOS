@@ -11,6 +11,7 @@ const commands = {
     "hello": "A greeting",
     "play": "Play a game of Pong (W/S to move)",
     "projects": "List my projects",
+    "recalls": "View historical data on US food recalls",
     "resume": "Download Aidan\'s Resume",
     "schwarber": "Check Kyle Schwarber\'s home run stats",
     "skills": "List my skills",

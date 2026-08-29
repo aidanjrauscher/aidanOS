@@ -127,6 +127,9 @@ const HelpDetails = () => (
           <li>More on GitHub (try `cd github`)</li>
         </ul>
       };
+      case 'recalls':
+        window.open('https://recalls.aidanjrauscher.com', '_blank', 'noopener,noreferrer');
+        return <p>Navigating to recalls...</p>;
       case 'resume':
         return { type: 'react', content: handleResumeCommand() };
       case 'schwarber':
