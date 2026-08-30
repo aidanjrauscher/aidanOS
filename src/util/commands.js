@@ -8,6 +8,7 @@ const commands = {
     "disco": "Activate temporary disco mode",
     "echo": "Specifies text to display on the screen",
     "experience": "List my experience",
+    "fsis": "View map of FSIS inspection sites",
     "hello": "A greeting",
     "play": "Play a game of Pong (W/S to move)",
     "projects": "List my projects",
